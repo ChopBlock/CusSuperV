@@ -3,7 +3,7 @@
 
 #include <QLocale>
 #include <QTranslator>
-
+#include "spdlog/spdlog.h"
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);

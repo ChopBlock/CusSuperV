@@ -6,9 +6,25 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 6.2 COMPONENTS Quick REQUIRED)
+find_package(spdlog CONFIG REQUIRED)
 
+#-----project----
+include_directories(
+    Manage/
+    Template/
+    )
+file(GLOB src
+	Manage/*cpp
+    Template/*cpp
+ 
+    )
+set(
+source
+${src}
+	)
 qt_add_executable(appCusSuperV
     main.cpp
+    ${source}
 )
 
 qt_add_qml_module(appCusSuperV
@@ -20,4 +36,7 @@ qt_add_qml_module(appCusSuperV
 target_compile_definitions(appCusSuperV
     PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(appCusSuperV
-    PRIVATE Qt6::Quick)
+    PRIVATE
+    Qt6::Quick
+    spdlog::spdlog
+    )
