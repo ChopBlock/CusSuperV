@@ -1,20 +1,28 @@
-cmake_minimum_required(VERSION 3.16)
+﻿cmake_minimum_required(VERSION 3.16)
 
 project(CusSuperV VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD 17)
+find_package(Qt6 6.2 COMPONENTS
+    Quick
+    GUi
+    Qml
+    Widgets
+    Core
 
-find_package(Qt6 6.2 COMPONENTS Quick REQUIRED)
-find_package(spdlog CONFIG REQUIRED)
+
+    REQUIRED)
+find_package(glog CONFIG REQUIRED)
 
 #-----project----
 include_directories(
-    Manage/
+     Guarantee/
     Template/
     )
 file(GLOB src
-	Manage/*cpp
+    Guarantee/*cpp
     Template/*cpp
  
     )
@@ -38,5 +46,10 @@ target_compile_definitions(appCusSuperV
 target_link_libraries(appCusSuperV
     PRIVATE
     Qt6::Quick
-    spdlog::spdlog
+    Qt6::Gui
+    Qt6::Qml
+    Qt6::Widgets
+
+
+    glog::glog
     )

@@ -1,12 +1,12 @@
-#include <QGuiApplication>
-#include <QQmlApplicationEngine>
+﻿#include "spdlog/spdlog.h"
+#include <QApplication>
 
 #include <QLocale>
+#include <QMessageBox>
+#include <QQmlApplicationEngine>
 #include <QTranslator>
-#include "spdlog/spdlog.h"
-int main(int argc, char *argv[])
-{
-    QGuiApplication app(argc, argv);
+int main(int argc, char *argv[]) {
+    QApplication app(argc, argv); // QApplication<-QGuiAppaction<-QCoreAPPaction
 
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();
@@ -20,12 +20,14 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     const QUrl url(u"qrc:/CusSuperV/main.qml"_qs);
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
-                     &app, [url](QObject *obj, const QUrl &objUrl) {
+    QObject::connect(
+    &engine, &QQmlApplicationEngine::objectCreated, &app,
+    [url](QObject *obj, const QUrl &objUrl) {
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
-    }, Qt::QueuedConnection);
-    engine.load(url);
+    },
+    Qt::QueuedConnection);
 
+    engine.load(url);
     return app.exec();
 }
