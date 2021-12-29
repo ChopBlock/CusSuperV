@@ -15,6 +15,7 @@ find_package(Qt6 6.2 COMPONENTS
 
     REQUIRED)
 find_package(glog CONFIG REQUIRED)
+find_package(unofficial-breakpad CONFIG REQUIRED)
 
 #-----project----
 include_directories(
@@ -49,6 +50,8 @@ target_link_libraries(appCusSuperV
     Qt6::Gui
     Qt6::Qml
     Qt6::Widgets
+    unofficial::breakpad::libbreakpad
+    unofficial::breakpad::libbreakpad_client
 
 
     glog::glog

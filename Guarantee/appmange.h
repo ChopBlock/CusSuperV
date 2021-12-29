@@ -5,6 +5,7 @@
 #include <QObject>
 #include <QQmlEngine>
 #include<glog/logging.h>
+
 #define LOGDIR "./LOG/"
 /**
  *
