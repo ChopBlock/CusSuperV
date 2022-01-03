@@ -5,8 +5,15 @@
 #include <QObject>
 #include <QQmlEngine>
 #include<glog/logging.h>
+#include <QTranslator>
+#include <QQmlApplicationEngine>
+#include <QLocale>
+#include<QDebug>
+#include"client/windows/handler/exception_handler.h"
+#include"folly/FBString.h"
+#include"folly/File.h"
+#include<QDir>
 
-#define LOGDIR "./LOG/"
 /**
  *
  *1.初始化spdlog日志 main中 初始化app
@@ -18,18 +25,34 @@
  **/
 class AppMange :QObject{
     Q_OBJECT
-    public:
+public:
 
-    explicit AppMange(QApplication *parent=nullptr );
-
-
-    void InitLOG(QString dir = LOGDIR);//初始化日志
+    explicit AppMange(int argc, char *argv[] );
 
 
-    private:
+    void InitLOG(const char * argv="");//初始化日志
 
-    QApplication *app;
-    QQmlEngine *qmlengine;//在Qapplication之后初始化
+
+void exceptionHander();//google 异常捕捉
+
+public slots:
+
+    static   void Appdestroy();
+    static   void Appquit();
+    static   void Appclose();
+
+    static   void QMLexit();
+    static   void QMLdestroy();
+    static   void QMLquit();
+
+
+
+private:
+
+private:
+  google_breakpad::ExceptionHandler *eh;
+    QApplication *QApp;
+    QQmlApplicationEngine *qmlengine;//在Qapplication之后初始化
 
 };
 

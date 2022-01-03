@@ -16,6 +16,7 @@ find_package(Qt6 6.2 COMPONENTS
     REQUIRED)
 find_package(glog CONFIG REQUIRED)
 find_package(unofficial-breakpad CONFIG REQUIRED)
+find_package(folly CONFIG REQUIRED)
 
 #-----project----
 include_directories(
@@ -55,4 +56,6 @@ target_link_libraries(appCusSuperV
 
 
     glog::glog
+    Folly::folly
+    Folly::folly_deps
     )
