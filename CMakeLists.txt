@@ -11,6 +11,7 @@ find_package(Qt6 6.2 COMPONENTS
     Qml
     Widgets
     Core
+    LinguistTools
 
 
     REQUIRED)
@@ -20,28 +21,60 @@ find_package(folly CONFIG REQUIRED)
 
 #-----project----
 include_directories(
-     Guarantee/
-    Template/
+     guarantee/
+    template/
     )
 file(GLOB src
-    Guarantee/*cpp
-    Template/*cpp
- 
+    guarantee/*cpp
+    template/*cpp
     )
+file(
+    GLOB
+    asset_src
+    asset_src.qrc
+
+    )
+# translations files
+file(GLOB ts
+  translator/CusSuperV_zh_CN.ts
+  translator/CusSuperV_en_AS.ts
+    )
+
+
+qt_create_translation(
+    TS_FILES  ${CMAKE_SOURCE_DIR} ${ts}
+
+  )
+
 set(
 source
 ${src}
-	)
+${asset_src}
+${ts}
+${TS_FILES}
+
+   )
+
+
 qt_add_executable(appCusSuperV
     main.cpp
     ${source}
+
+
 )
+
+
+
+
 
 qt_add_qml_module(appCusSuperV
     URI CusSuperV
     VERSION 1.0
-    QML_FILES main.qml 
+    QML_FILES main.qml
 )
+
+
+
 
 target_compile_definitions(appCusSuperV
     PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
@@ -51,6 +84,7 @@ target_link_libraries(appCusSuperV
     Qt6::Gui
     Qt6::Qml
     Qt6::Widgets
+
     unofficial::breakpad::libbreakpad
     unofficial::breakpad::libbreakpad_client
 

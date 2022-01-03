@@ -13,6 +13,7 @@ AppMange::AppMange(int argc, char *argv[])
     QApp=qApp;
 
     qmlengine=new QQmlApplicationEngine;
+
     connect(QApp,&QApplication::lastWindowClosed,this,&AppMange::Appclose);
     connect(QApp,&QApplication::aboutToQuit,this,&AppMange::Appquit);
     connect(QApp,&QApplication::destroyed,this,&AppMange::Appdestroy);
@@ -29,9 +30,15 @@ AppMange::AppMange(int argc, char *argv[])
 
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();
+    for(auto &s:uiLanguages){
+    LOG(INFO)<<s.toStdString();
+    }
+QString s=tr("卧室");
     for (const QString &locale : uiLanguages) {
         const QString baseName = "CusSuperV_" + QLocale(locale).name();
-        if (translator.load(":/i18n/" + baseName)) {
+ LOG(INFO)<<baseName.toStdString();
+        if (translator.load("./" + baseName)) {//translator/
+
             app.installTranslator(&translator);
             break;
         }
