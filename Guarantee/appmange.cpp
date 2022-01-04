@@ -8,11 +8,20 @@ AppMange::AppMange(int argc, char *argv[])
 
 
     QApplication  app(argc,argv) ;
-    InitLOG(argv[0]);
+
 
     QApp=qApp;
 
     qmlengine=new QQmlApplicationEngine;
+
+    //  init app
+    InitLOG(argv[0]);//
+    exceptionHander();//google breakpad in process catch
+    InitApp();//
+    registerQmlTypes();
+    initializeQmlInterface();
+
+
 
     connect(QApp,&QApplication::lastWindowClosed,this,&AppMange::Appclose);
     connect(QApp,&QApplication::aboutToQuit,this,&AppMange::Appquit);
@@ -27,16 +36,15 @@ AppMange::AppMange(int argc, char *argv[])
 
 
 
-
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();
     for(auto &s:uiLanguages){
-    LOG(INFO)<<s.toStdString();
+        LOG(INFO)<<s.toStdString();
     }
 
     for (const QString &locale : uiLanguages) {
         const QString baseName = "CusSuperV_" + QLocale(locale).name();
- LOG(INFO)<<baseName.toStdString();
+
         if (translator.load("./" + baseName)) {//translator/
 
             app.installTranslator(&translator);
@@ -56,7 +64,7 @@ AppMange::AppMange(int argc, char *argv[])
 
 
     qmlengine->load(url);
-     exceptionHander();//google breakpad in process catch
+
 
 
     QApp->exec();
@@ -76,20 +84,20 @@ void YourFailureWriter(const char* data, int size) {
 }
 void AppMange::InitLOG(const char * argv)
 {
-auto checkpath=[](const std::string path){
-//std::fstream  fstrm(path.c_str(),std::ios::out) ;
-//if(!fstrm.is_open()){
+    auto checkpath=[](const std::string path){
+        //std::fstream  fstrm(path.c_str(),std::ios::out) ;
+        //if(!fstrm.is_open()){
 
-//    LOG(ERROR)<<path +" 打开失败！";
-//}
-//fstrm.close();
-QDir dir(QString::fromStdString( path));
-if(!dir.exists()){
+        //    LOG(ERROR)<<path +" 打开失败！";
+        //}
+        //fstrm.close();
+        QDir dir(QString::fromStdString( path));
+        if(!dir.exists()){
 
-    dir.mkpath(QString::fromStdString( path));
-}
+            dir.mkpath(QString::fromStdString( path));
+        }
 
-};
+    };
 
     std::string log_dir="./LOG/";
 
@@ -99,7 +107,7 @@ if(!dir.exists()){
     std::string log_FATAL_dir=QDir::currentPath().toStdString()+"/LOG/FATAL/";    checkpath(log_FATAL_dir);
 
 
-   // FLAGS_colorlogtostderr=true;
+    // FLAGS_colorlogtostderr=true;
 
     FLAGS_stderrthreshold=google::GLOG_INFO;
     google::InstallFailureSignalHandler();
@@ -143,6 +151,80 @@ void AppMange::exceptionHander()
     eh=new google_breakpad::ExceptionHandler(
                 L"./dump", nullptr, MinidumpCallback, nullptr,
                 google_breakpad::ExceptionHandler::HANDLER_ALL);
+}
+
+void AppMange::InitApp()
+{    // Init. application
+
+    QApp->setApplicationName(APP_NAME);
+    QApp->setApplicationVersion(APP_VERSION);
+    QApp->setOrganizationName(APP_DEVELOPER);
+    QApp->setOrganizationDomain(APP_SUPPORT_URL);
+
+    // Set application style
+    QApp->setStyle(QStyleFactory::create("Fusion"));
+    QQuickStyle::setStyle("Fusion");
+    // Load Roboto fonts from resources
+    QFontDatabase::addApplicationFont(":/fonts/Roboto-Bold.ttf");
+    QFontDatabase::addApplicationFont(":/fonts/Roboto-Regular.ttf");
+    QFontDatabase::addApplicationFont(":/fonts/RobotoMono-Bold.ttf");
+    QFontDatabase::addApplicationFont(":/fonts/RobotoMono-Regular.ttf");
+
+    // Set Roboto as default app font
+    QFont font("Roboto");
+#if defined(Q_OS_WIN)
+    font.setPointSize(9);
+#elif defined(Q_OS_MAC)
+    font.setPointSize(13);
+#elif defined(Q_OS_LINUX)
+    font.setPointSize(10);
+#endif
+    qApp->setFont(font);
+
+
+}
+
+void AppMange::registerQmlTypes()
+{
+
+}
+
+void AppMange::initializeQmlInterface()
+{// Initialize modules
+    auto miscThemeManager = &Misc::ThemeManager::instance();
+    // Operating system flags
+    bool isWin = false;
+    bool isMac = false;
+    bool isNix = false;
+#if defined(Q_OS_MAC)
+    isMac = true;
+#elif defined(Q_OS_WIN)
+    isWin = true;
+#else
+    isNix = true;
+#endif
+
+    // Qt version QML flag
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    const bool qt6 = false;
+#else
+    const bool qt6 = true;
+#endif
+
+    // Register C++ modules with QML
+    QQmlContext *c = qmlengine->rootContext();
+    c->setContextProperty("Cpp_Qt6", qt6);
+    c->setContextProperty("Cpp_IsWin", isWin);
+    c->setContextProperty("Cpp_IsMac", isMac);
+    c->setContextProperty("Cpp_IsNix", isNix);
+    c->setContextProperty("Cpp_ThemeManager", miscThemeManager);
+
+    // Register app info with QML
+    c->setContextProperty("Cpp_AppName", qApp->applicationName());
+    c->setContextProperty("Cpp_AppUpdaterUrl", APP_UPDATER_URL);
+    c->setContextProperty("Cpp_AppVersion", qApp->applicationVersion());
+    c->setContextProperty("Cpp_AppOrganization", qApp->organizationName());
+    c->setContextProperty("Cpp_AppOrganizationDomain", qApp->organizationDomain());
 }
 
 

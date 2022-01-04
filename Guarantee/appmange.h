@@ -13,7 +13,12 @@
 #include"folly/FBString.h"
 #include"folly/File.h"
 #include<QDir>
-
+#include<QFontDatabase>
+#include"ThemeManager.h"
+#include<qqmlcontext.h>
+#include<AppInfo.h>
+#include<QQuickStyle>
+#include<QStyleFactory>
 /**
  *
  *1.初始化spdlog日志 main中 初始化app
@@ -33,7 +38,12 @@ public:
     void InitLOG(const char * argv="");//初始化日志
 
 
-void exceptionHander();//google 异常捕捉
+    void exceptionHander();//google 异常捕捉
+
+    void InitApp();
+    void registerQmlTypes();
+    void initializeQmlInterface();
+
 
 public slots:
 
@@ -50,7 +60,7 @@ public slots:
 private:
 
 private:
-  google_breakpad::ExceptionHandler *eh;
+    google_breakpad::ExceptionHandler *eh;
     QApplication *QApp;
     QQmlApplicationEngine *qmlengine;//在Qapplication之后初始化
 

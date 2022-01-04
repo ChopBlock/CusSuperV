@@ -13,7 +13,7 @@ find_package(Qt6 6.2 COMPONENTS
     Widgets
     Core
     LinguistTools
-
+    QuickControls2
 
     REQUIRED)
 find_package(glog CONFIG REQUIRED)
@@ -85,6 +85,7 @@ target_link_libraries(appCusSuperV
     Qt6::Gui
     Qt6::Qml
     Qt6::Widgets
+    Qt6::QuickControls2
 
     unofficial::breakpad::libbreakpad
     unofficial::breakpad::libbreakpad_client
