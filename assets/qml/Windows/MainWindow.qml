@@ -119,14 +119,7 @@ FramelessWindow.CustomWindow {
 
 
 
-    //
-    // Rectangle for the menubar (only used if custom window flags are disabled)
-    //
-    Rectangle {
-        color: root.titlebarColor
-        anchors.fill: menubarLayout
-        visible: !Cpp_ThemeManager.customWindowDecorations
-    }
+
 
 
     //
@@ -139,7 +132,7 @@ FramelessWindow.CustomWindow {
         palette.text: Cpp_ThemeManager.text
         palette.buttonText: Cpp_ThemeManager.text
         palette.windowText: Cpp_ThemeManager.text
-        anchors.topMargin: menubarLayout.height + root.shadowMargin
+        //anchors.topMargin: menubarLayout.height + root.shadowMargin
 
         background: Rectangle {
             radius: root.radius
@@ -163,7 +156,7 @@ FramelessWindow.CustomWindow {
                 StackView {
                     id: stack
                     clip: true
-                    initialItem: terminal
+                  //  initialItem: terminal
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     data: [

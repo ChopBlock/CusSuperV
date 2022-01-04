@@ -165,13 +165,18 @@ void AppMange::InitApp()
     QApp->setStyle(QStyleFactory::create("Fusion"));
     QQuickStyle::setStyle("Fusion");
     // Load Roboto fonts from resources
-    QFontDatabase::addApplicationFont(":/fonts/Roboto-Bold.ttf");
-    QFontDatabase::addApplicationFont(":/fonts/Roboto-Regular.ttf");
-    QFontDatabase::addApplicationFont(":/fonts/RobotoMono-Bold.ttf");
-    QFontDatabase::addApplicationFont(":/fonts/RobotoMono-Regular.ttf");
+    QFontDatabase::addApplicationFont(":/assets/fonts/Roboto-Bold.ttf");
+    QFontDatabase::addApplicationFont(":/assets/fonts/Roboto-Regular.ttf");
+    QFontDatabase::addApplicationFont(":/assets/fonts/RobotoMono-Bold.ttf");
+    QFontDatabase::addApplicationFont(":/assets/fonts/RobotoMono-Regular.ttf");
+
+    QFontDatabase::addApplicationFont(":/assets/fonts/Hack-Bold.ttf");
+    QFontDatabase::addApplicationFont(":/assets/fonts/Hack-BoldItalic.ttf");
+    QFontDatabase::addApplicationFont(":/assets/fonts/Hack-Italic.ttf");
+    QFontDatabase::addApplicationFont(":/assets/fonts/Hack-Regular.ttf");
 
     // Set Roboto as default app font
-    QFont font("Roboto");
+    QFont font("Hack");
 #if defined(Q_OS_WIN)
     font.setPointSize(9);
 #elif defined(Q_OS_MAC)

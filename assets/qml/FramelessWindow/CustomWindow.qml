@@ -20,7 +20,7 @@
  * THE SOFTWARE.
  */
 
-import QtQuick
+import QtQuick 2.3
 import QtQuick.Window 2.2 as QtWindow
 
 import "../Widgets" as Widgets
@@ -270,8 +270,7 @@ QtWindow.Window {
     //
     // Maximize window fixes
     //
-
-    onVisibilityChanged: {
+    onVisibilityChanged:()=> {
         // Ensure that correct window flags are still used
         if (Cpp_ThemeManager.customWindowDecorations) {
             // Hard-reset window flags on macOS to fix most glitches

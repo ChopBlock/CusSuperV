@@ -40,7 +40,7 @@
 Misc::ThemeManager::ThemeManager()
 {
     populateThemes();
-    loadTheme(m_settings.value("themeId", 3).toInt());
+    loadTheme(m_settings.value("themeId", 0).toInt());
 
 #if QT_VERSION < QT_VERSION_CHECK(5, 12, 0)
     setCustomWindowDecorations(m_settings.value("customWindows", false).toBool());
