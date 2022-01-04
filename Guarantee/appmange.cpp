@@ -33,7 +33,7 @@ AppMange::AppMange(int argc, char *argv[])
     for(auto &s:uiLanguages){
     LOG(INFO)<<s.toStdString();
     }
-QString s=tr("卧室");
+
     for (const QString &locale : uiLanguages) {
         const QString baseName = "CusSuperV_" + QLocale(locale).name();
  LOG(INFO)<<baseName.toStdString();
@@ -45,7 +45,7 @@ QString s=tr("卧室");
     }
 
 
-    const QUrl url(u"qrc:/CusSuperV/main.qml"_qs);
+    const QUrl url(u"qrc:/main.qml"_qs);//u"qrc:/CusSuperV/main.qml"_qs
     QObject::connect(
                 qmlengine, &QQmlApplicationEngine::objectCreated, &app,
                 [url](QObject *obj, const QUrl &objUrl) {

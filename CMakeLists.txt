@@ -3,6 +3,7 @@
 project(CusSuperV VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_STANDARD 17)
 find_package(Qt6 6.2 COMPONENTS
@@ -67,11 +68,11 @@ qt_add_executable(appCusSuperV
 
 
 
-qt_add_qml_module(appCusSuperV
-    URI CusSuperV
-    VERSION 1.0
-    QML_FILES main.qml
-)
+#qt_add_qml_module(appCusSuperV  //qt6 新加的 构建qml的qmldir autorcc qt_add_source 构建资源等qrc
+#    URI CusSuperV
+#    VERSION 1.0
+#    QML_FILES main.qml
+#)
 
 
 
