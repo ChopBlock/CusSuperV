@@ -196,7 +196,7 @@ void AppMange::registerQmlTypes()
 
 void AppMange::initializeQmlInterface()
 {// Initialize modules
-    auto miscThemeManager = &Misc::ThemeManager::instance();
+    auto miscThemeManager = Misc::ThemeManager::getInstance();
     // Operating system flags
     bool isWin = false;
     bool isMac = false;
@@ -222,7 +222,7 @@ void AppMange::initializeQmlInterface()
     c->setContextProperty("Cpp_IsWin", isWin);
     c->setContextProperty("Cpp_IsMac", isMac);
     c->setContextProperty("Cpp_IsNix", isNix);
-    c->setContextProperty("Cpp_ThemeManager", miscThemeManager);
+    c->setContextProperty("Cpp_ThemeManager", miscThemeManager.get());
 
     // Register app info with QML
     c->setContextProperty("Cpp_AppName", qApp->applicationName());

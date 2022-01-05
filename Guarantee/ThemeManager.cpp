@@ -23,15 +23,15 @@
 #include <QDir>
 #include <QFile>
 #include <QPalette>
-#include <QProcess>
+
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QApplication>
 #include <QJsonDocument>
 
-#include <AppInfo.h>
-#include <Utilities.h>
-#include <ThemeManager.h>
+#include "AppInfo.h"
+#include "Utilities.h"
+#include "ThemeManager.h"
 
 /**
  * Constructor function, searches for available themes & loads
@@ -52,12 +52,15 @@ Misc::ThemeManager::ThemeManager()
 /**
  * Returns a pointer to the only instance of this class
  */
-Misc::ThemeManager &Misc::ThemeManager::instance()
-{
-    static ThemeManager singleton;
-    return singleton;
-}
-
+//Misc::ThemeManager &Misc::ThemeManager::instance()
+//{
+//    static ThemeManager singleton;
+//    return singleton;
+//}
+static folly::Singleton<Misc::ThemeManager, Misc::PrivateTag> the_singleton;
+ std::shared_ptr<Misc::ThemeManager> Misc::ThemeManager::getInstance() {
+   return the_singleton.try_get();
+ }
 /**
  * Returns the ID of the theme that the user has selected.
  */

@@ -30,8 +30,8 @@
 #include <QAbstractButton>
 #include <QDesktopServices>
 
-#include <AppInfo.h>
-#include <Utilities.h>
+#include "AppInfo.h"
+#include "Utilities.h"
 
 /**
  * Returns a pointer to the only instance of the class

@@ -1,6 +1,6 @@
 ﻿cmake_minimum_required(VERSION 3.16)
 
-project(CusSuperV VERSION 0.1 LANGUAGES CXX)
+project(CusSuperV VERSION 0.1 LANGUAGES C CXX)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -21,9 +21,10 @@ find_package(unofficial-breakpad CONFIG REQUIRED)
 find_package(folly CONFIG REQUIRED)
 
 #-----project----
-include_directories(
-     guarantee/
-    template/
+file(GLOB
+    headfiles
+    guarantee/*h
+    template/*h
     )
 file(GLOB src
     guarantee/*cpp
@@ -37,24 +38,28 @@ file(
     )
 # translations files
 file(GLOB ts
-  translator/CusSuperV_zh_CN.ts
-  translator/CusSuperV_en_AS.ts
+    assets/translations/de.ts
+    assets/translations/en.ts
+    assets/translations/ru.ts
+    assets/translations/en.ts
+    assets/translations/zh.ts
     )
 
 
 qt_create_translation(
     TS_FILES  ${CMAKE_SOURCE_DIR} ${ts}
 
-  )
+    )
 
 set(
-source
-${src}
-${asset_src}
-${ts}
-${TS_FILES}
+    source
+    ${headfiles}
+    ${src}
 
-   )
+    ${asset_src}
+    ${TS_FILES}
+
+    )
 
 
 qt_add_executable(appCusSuperV
@@ -62,7 +67,7 @@ qt_add_executable(appCusSuperV
     ${source}
 
 
-)
+    )
 
 
 
