@@ -107,7 +107,7 @@ void AppMange::InitLOG(const char * argv)
     std::string log_FATAL_dir=QDir::currentPath().toStdString()+"/LOG/FATAL/";    checkpath(log_FATAL_dir);
 
 
-    // FLAGS_colorlogtostderr=true;
+     FLAGS_colorlogtostderr=true;
 
     FLAGS_stderrthreshold=google::GLOG_INFO;
     google::InstallFailureSignalHandler();
