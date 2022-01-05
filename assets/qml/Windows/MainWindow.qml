@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2020-2021 Alex Spataru <https://github.com/alex-spataru>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33,7 +33,8 @@ import "../Widgets"
 
 import "../FramelessWindow" as FramelessWindow
 import "../PlatformDependent" as PlatformDependent
-
+import "../DashBoard"
+import "../Setup"
 FramelessWindow.CustomWindow {
     id: root
 
@@ -52,12 +53,7 @@ FramelessWindow.CustomWindow {
 
 
 
-    //
-    // Console-related functions
-    //
-    function consoleCopy()      { terminal.copy()      }
-    function consoleClear()     { terminal.clear()     }
-    function consoleSelectAll() { terminal.selectAll() }
+
 
     //
     // Window geometry
@@ -156,10 +152,21 @@ FramelessWindow.CustomWindow {
                 StackView {
                     id: stack
                     clip: true
-                  //  initialItem: terminal
+                    initialItem: rmsplot
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     data: [
+
+                        RmsPlot{
+                            id:rmsplot
+                            width: parent.width
+                            height: parent.height
+                        },
+                        RmsSetup{
+                            width: parent.width
+                            height: parent.height
+
+                        }
 
 
 

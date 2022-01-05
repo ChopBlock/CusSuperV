@@ -119,12 +119,6 @@
         <file>assets/touchbar/console.png</file>
         <file>assets/touchbar/dashboard.png</file>
         <file>assets/touchbar/setup.png</file>
-        <file>assets/translations/de.ts</file>
-        <file>assets/translations/en.ts</file>
-        <file>assets/translations/es.ts</file>
-        <file>assets/translations/ru.ts</file>
-        <file>assets/translations/zh.qm</file>
-        <file>assets/translations/zh.ts</file>
         <file>assets/window-border/macOS/close-active.svg</file>
         <file>assets/window-border/macOS/close-hover.svg</file>
         <file>assets/window-border/macOS/close-normal.svg</file>
@@ -144,5 +138,7 @@
         <file>assets/qml/Windows/Acknowledgements.qml</file>
         <file>assets/qml/Windows/Donate.qml</file>
         <file>assets/qml/Windows/MainWindow.qml</file>
+        <file>assets/qml/DashBoard/RmsPlot.qml</file>
+        <file>assets/qml/Setup/RmsSetup.qml</file>
     </qresource>
 </RCC>

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2020-2021 Alex Spataru <https://github.com/alex-spataru>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -29,9 +29,9 @@
 #include <QApplication>
 #include <QJsonDocument>
 
-#include <AppInfo.h>
-#include <Utilities.h>
-#include <ThemeManager.h>
+#include "AppInfo.h"
+#include "Utilities.h"
+#include "ThemeManager.h"
 
 /**
  * Constructor function, searches for available themes & loads

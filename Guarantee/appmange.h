@@ -16,7 +16,8 @@
 #include<QFontDatabase>
 #include"ThemeManager.h"
 #include<qqmlcontext.h>
-#include<AppInfo.h>
+
+#include"AppInfo.h"
 #include<QQuickStyle>
 #include<QStyleFactory>
 /**

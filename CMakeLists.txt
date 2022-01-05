@@ -14,6 +14,9 @@ find_package(Qt6 6.2 COMPONENTS
     Core
     LinguistTools
     QuickControls2
+    SerialPort
+    SerialBus
+    Charts
 
     REQUIRED)
 find_package(glog CONFIG REQUIRED)
@@ -21,40 +24,49 @@ find_package(unofficial-breakpad CONFIG REQUIRED)
 find_package(folly CONFIG REQUIRED)
 
 #-----project----
-include_directories(
-     guarantee/
-    template/
+
+file(GLOB
+     head
+     guarantee/*h
+     template/*h
+     rms_api/*h
     )
-file(GLOB src
+
+file(GLOB
+    src
     guarantee/*cpp
     template/*cpp
+     rms_api/*cpp
     )
 file(
     GLOB
     asset_src
     asset_src.qrc
-
     )
 # translations files
-file(GLOB ts
-  translator/CusSuperV_zh_CN.ts
-  translator/CusSuperV_en_AS.ts
+set(
+    ts
+    assets/translations/de.ts
+    assets/translations/en.ts
+    assets/translations/es.ts
+    assets/translations/ru.ts
+    assets/translations/zh.ts
     )
+set(
+    source
+    ${head}
+    ${src}
+    ${asset_src}
+    ${TS_FILES}
 
+    )
 
 qt_create_translation(
     TS_FILES  ${CMAKE_SOURCE_DIR} ${ts}
 
-  )
+    )
 
-set(
-source
-${src}
-${asset_src}
-${ts}
-${TS_FILES}
 
-   )
 
 
 qt_add_executable(appCusSuperV
@@ -62,7 +74,7 @@ qt_add_executable(appCusSuperV
     ${source}
 
 
-)
+    )
 
 
 
@@ -86,6 +98,9 @@ target_link_libraries(appCusSuperV
     Qt6::Qml
     Qt6::Widgets
     Qt6::QuickControls2
+    Qt6::SerialPort
+    Qt6::SerialBus
+    Qt6::Charts
 
     unofficial::breakpad::libbreakpad
     unofficial::breakpad::libbreakpad_client
