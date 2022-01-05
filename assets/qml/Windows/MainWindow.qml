@@ -161,11 +161,6 @@ FramelessWindow.CustomWindow {
                             id:rmsplot
                             width: parent.width
                             height: parent.height
-                        },
-                        RmsSetup{
-                            width: parent.width
-                            height: parent.height
-
                         }
 
 
@@ -173,6 +168,12 @@ FramelessWindow.CustomWindow {
                     ]
                 }
 
+                RmsSetup{
+                    Layout.fillHeight: true
+                    Layout.rightMargin: setupMargin
+                    Layout.minimumWidth: displayedWidth
+                    Layout.maximumWidth: displayedWidth
+                }
 
             }
         }
