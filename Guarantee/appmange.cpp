@@ -9,10 +9,11 @@ AppMange::AppMange(int argc, char *argv[])
 
     QApplication  app(argc,argv) ;
 
-
+    qputenv("QSG_RHI_BACKEND","opengl");
     QApp=qApp;
 
     qmlengine=new QQmlApplicationEngine;
+
 
     //  init app
     InitLOG(argv[0]);//
