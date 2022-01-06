@@ -1,6 +1,6 @@
 ﻿cmake_minimum_required(VERSION 3.16)
 
-project(CusSuperV VERSION 0.1 LANGUAGES CXX)
+project(CusSuperV VERSION 0.1 LANGUAGES C CXX)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -17,6 +17,7 @@ find_package(Qt6 6.2 COMPONENTS
     SerialPort
     SerialBus
     Charts
+    OpenGL
 
     REQUIRED)
 find_package(glog CONFIG REQUIRED)
@@ -101,6 +102,7 @@ target_link_libraries(appCusSuperV
     Qt6::SerialPort
     Qt6::SerialBus
     Qt6::Charts
+    Qt6::OpenGL
 
     unofficial::breakpad::libbreakpad
     unofficial::breakpad::libbreakpad_client

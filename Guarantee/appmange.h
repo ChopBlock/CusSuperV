@@ -4,22 +4,23 @@
 #include <QApplication>
 #include <QObject>
 #include <QQmlEngine>
-#include<glog/logging.h>
 #include <QTranslator>
 #include <QQmlApplicationEngine>
 #include <QLocale>
 #include<QDebug>
-#include"client/windows/handler/exception_handler.h"
-#include"folly/FBString.h"
-#include"folly/File.h"
 #include<QDir>
 #include<QFontDatabase>
-#include"ThemeManager.h"
 #include<qqmlcontext.h>
-
-#include"AppInfo.h"
 #include<QQuickStyle>
 #include<QStyleFactory>
+#include <QtQuick/QQuickView>
+
+#include"AppInfo.h"
+#include<glog/logging.h>
+#include"folly/FBString.h"
+#include"folly/File.h"
+#include"ThemeManager.h"
+
 /**
  *
  *1.初始化spdlog日志 main中 初始化app
@@ -46,7 +47,7 @@ public:
     void initializeQmlInterface();
 
 
-public slots:
+public Q_SLOTS:
 
     static   void Appdestroy();
     static   void Appquit();

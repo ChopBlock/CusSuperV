@@ -117,7 +117,6 @@ FramelessWindow.CustomWindow {
 
 
 
-
     //
     // Main layout
     //
@@ -140,12 +139,42 @@ FramelessWindow.CustomWindow {
             anchors.fill: parent
 
 
+            //
+            // Application toolbar
+            //
+            Item {
+
+                id: toolbar
+
+                z: titlebar.z
+                Layout.fillWidth: true
+                Layout.minimumHeight: 48
+                Layout.maximumHeight: 48
+
+                Rectangle {  anchors.fill: parent
+                                radius: 3
+                                border.width: 1
+                                color: "transparent"
+                                border.color: "#040600"
+                                opacity: parent.checked ? 0.2 : 0.0
+
+                                Rectangle {
+
+                                    border.width: 1
+                                    color: "#626262"
+                                    anchors.fill: parent
+                                    border.color: "#c2c2c2"
+                                    radius: parent.radius - 1
+                                    anchors.margins: parent.border.width
+                                }
+                            }
+            }
 
             //
             //
             //
             RowLayout {
-                spacing: 0
+                spacing:0
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
@@ -176,10 +205,14 @@ FramelessWindow.CustomWindow {
                 }
 
             }
+
+
         }
     }
 
-
+function feedxy(x,y){
+rmsplot.addxy(x,y)
+}
 
     //
     // Resize handler

@@ -1,4 +1,4 @@
-﻿import QtQuick
+﻿import QtQuick 2.9
 import "./assets/qml/Windows" as Windows
 import QtQuick.Controls 2.5
 

@@ -53,14 +53,14 @@ AppMange::AppMange(int argc, char *argv[])
     }
 
 
-    const QUrl url(u"qrc:/main.qml"_qs);//u"qrc:/CusSuperV/main.qml"_qs
-    QObject::connect(
-                qmlengine, &QQmlApplicationEngine::objectCreated, &app,
-                [url](QObject *obj, const QUrl &objUrl) {
-        if (!obj && url == objUrl)
-            QCoreApplication::exit(-1);
-    },
-    Qt::QueuedConnection);
+        const QUrl url(QStringLiteral("qrc:/main.qml") );//u"qrc:/CusSuperV/main.qml"_qs
+//    QObject::connect(
+//                qmlengine, &QQmlApplicationEngine::objectCreated, &app,
+//                [url](QObject *obj, const QUrl &objUrl) {
+//        if (!obj && url == objUrl)
+//            QCoreApplication::exit(-1);
+//    },
+//    Qt::QueuedConnection);
 
 
     qmlengine->load(url);

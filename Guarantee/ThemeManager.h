@@ -22,11 +22,23 @@
 
 #pragma once
 
+
+
+
+
+
+#include"client/windows/handler/exception_handler.h"
+
+#include"folly/SingletonThreadLocal.h"
+
+//
 #include <QColor>
 #include <QObject>
 #include <QSettings>
-#include "DataTypes.h"
+#include"DataTypes.h"
+
 #include"glog/logging.h"
+
 namespace Misc
 {
 /**
