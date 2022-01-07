@@ -16,7 +16,7 @@ Item{
 //
 Loader {
     asynchronous: true
-    sourceComponent: Windows.MainWindow {
+    sourceComponent: Windows.MainWindow{
         Component.onCompleted: {
 
             app.forceActiveFocus()

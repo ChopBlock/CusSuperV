@@ -33,7 +33,7 @@ import "../Widgets"
 
 import "../FramelessWindow" as FramelessWindow
 import "../PlatformDependent" as PlatformDependent
-
+import "../dashboard_js"
 FramelessWindow.CustomWindow {
     id: root
 
@@ -161,6 +161,11 @@ FramelessWindow.CustomWindow {
                     Layout.fillHeight: true
                     data: [
 
+                        Chartjs{
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+
+                        }
 
 
                     ]

@@ -144,5 +144,11 @@
         <file>assets/qml/Windows/Acknowledgements.qml</file>
         <file>assets/qml/Windows/Donate.qml</file>
         <file>assets/qml/Windows/MainWindow.qml</file>
+        <file>assets/js/d3/d3.js</file>
+        <file>assets/js/d3/d3.min.js</file>
+        <file>assets/qml/dashboard_js/Chartjs.qml</file>
+        <file>assets/js/chartjs/Chart.qml</file>
+        <file>assets/js/chartjs/chart.js</file>
+        <file>assets/js/chartjs/chart.min.js</file>
     </qresource>
 </RCC>
