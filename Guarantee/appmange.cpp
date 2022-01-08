@@ -14,7 +14,7 @@ AppMange::AppMange(int argc, char *argv[])
     QApp=qApp;
 
     qmlengine=new QQmlApplicationEngine;
-
+ qDebug()<<QThread::currentThreadId();
     //  init app
     InitLOG(argv[0]);//
     exceptionHander();//google breakpad in process catch
