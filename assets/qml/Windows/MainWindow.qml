@@ -184,6 +184,7 @@ FramelessWindow.CustomWindow {
                     initialItem: rmsplot
                     Layout.fillWidth: true
                     Layout.fillHeight: true
+                    hoverEnabled: true
                     data: [
 
                         RmsPlot{

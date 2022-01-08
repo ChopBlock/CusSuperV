@@ -13,7 +13,6 @@ int main(int argc, char *argv[]) {
 
 
     AppMange appmange(argc,argv);
-
-    google::ShutdownGoogleLogging();
+    //google::ShutdownGoogleLogging();
     return 1;
 }

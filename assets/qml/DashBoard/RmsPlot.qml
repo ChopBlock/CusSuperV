@@ -1,6 +1,7 @@
-﻿import QtQuick 2.0
+﻿import QtQuick
 import QtCharts 2.3
 import "../Widgets"
+import QtQuick.Controls
 Item {
     id:plot_item
 
@@ -22,6 +23,7 @@ Item {
 
 
         ChartView{
+
             id:chart_view
             anchors {
                 fill: parent
@@ -37,19 +39,27 @@ Item {
 
             ValuesAxis{id:line_y ;min:0;max:5000}
             ValuesAxis{id:line1_x ;min:0;max:5000}
+
             LineSeries{
                 id:line1
                 name: qsTr("拉曼强度曲线")
-
-
-                width: 1
+                useOpenGL: true
+                width: 2
                 axisY: line_y
                 axisX:line1_x
-                onClicked:(ppoint)=>{ console.log("onClicked: " + ppoint.x + ", " + ppoint.y);}
+              //  onClicked:(ppoint)=>{ console.log("onClicked: " + ppoint.x + ", " + ppoint.y);}
+
+
+
+
+
             }
 
 
+
+
         }
+
 
     }
     function addxy(x,y){
@@ -59,7 +69,7 @@ Item {
         line_y.max=5000
         line1_x.max=5000
 
-        console.log("addxy %d  %d %d",line1.cout,x,y)
+      //  console.log(x,y)
     }
 
 

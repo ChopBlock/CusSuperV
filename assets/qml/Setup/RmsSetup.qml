@@ -140,7 +140,7 @@ Control {
                      Label{text:"feedPlot"}
                      Button{text: "FEED"
                      onClicked: {
-                     for(var i=0;i<30;i++){feedxy(i,i)}
+                     for(var i=0;i<30000;i++){feedxy(i,i)}
                      }
                      }
                      //

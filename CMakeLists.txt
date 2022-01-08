@@ -23,7 +23,8 @@ find_package(Qt6 6.2 COMPONENTS
 find_package(glog CONFIG REQUIRED)
 find_package(unofficial-breakpad CONFIG REQUIRED)
 find_package(folly CONFIG REQUIRED)
-
+find_package(Eigen3 CONFIG REQUIRED)
+find_package(Boost  REQUIRED)
 #-----project----
 
 file(GLOB
@@ -31,13 +32,17 @@ file(GLOB
      guarantee/*h
      template/*h
      rms_api/*h
+     rms_api/filter/savitzky_golay/*h
+     IO/*h
     )
 
 file(GLOB
     src
     guarantee/*cpp
     template/*cpp
-     rms_api/*cpp
+    rms_api/*cpp
+    rms_api/filter/savitzky_golay/*cpp
+    IO/*cpp
     )
 file(
     GLOB
@@ -111,4 +116,7 @@ target_link_libraries(appCusSuperV
     glog::glog
     Folly::folly
     Folly::folly_deps
+    Eigen3::Eigen
+    Boost::boost
+
     )

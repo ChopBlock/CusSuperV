@@ -1,6 +1,19 @@
 ﻿#ifndef APPMANGE_H
 #define APPMANGE_H
 
+
+#include<QFontDatabase>
+#include<QtQml>
+
+
+
+#include"AppInfo.h"
+#include<glog/logging.h>
+#include"folly/FBString.h"
+#include"folly/File.h"
+#include"ThemeManager.h"
+
+
 #include <QApplication>
 #include <QObject>
 #include <QQmlEngine>
@@ -9,18 +22,9 @@
 #include <QLocale>
 #include<QDebug>
 #include<QDir>
-#include<QFontDatabase>
-#include<qqmlcontext.h>
+#include <QtQuick/QQuickView>
 #include<QQuickStyle>
 #include<QStyleFactory>
-#include <QtQuick/QQuickView>
-
-#include"AppInfo.h"
-#include<glog/logging.h>
-#include"folly/FBString.h"
-#include"folly/File.h"
-#include"ThemeManager.h"
-
 /**
  *
  *1.初始化spdlog日志 main中 初始化app

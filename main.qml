@@ -1,6 +1,6 @@
-﻿import QtQuick 2.9
+﻿import QtQuick
 import "./assets/qml/Windows" as Windows
-import QtQuick.Controls 2.5
+import QtQuick.Controls
 
 Item{
     id: app

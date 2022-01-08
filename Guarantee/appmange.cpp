@@ -1,4 +1,5 @@
 ﻿#include "appmange.h"
+#include"../IO/serial.h"
 
 
 AppMange::AppMange(int argc, char *argv[])
@@ -9,7 +10,7 @@ AppMange::AppMange(int argc, char *argv[])
 
     QApplication  app(argc,argv) ;
 
-
+    qputenv("QSG_RHI_BACKEND","opengl");
     QApp=qApp;
 
     qmlengine=new QQmlApplicationEngine;
@@ -108,21 +109,7 @@ void AppMange::InitLOG(const char * argv)
 
 
     // FLAGS_colorlogtostderr=true;
-
-    FLAGS_stderrthreshold=google::GLOG_INFO;
-    google::InstallFailureSignalHandler();
-    google::InstallFailureFunction(&YourFailureFunction);
-    google::InstallFailureWriter(&YourFailureWriter);
-
-    google::InitGoogleLogging(argv);
-
-
-    google::SetStderrLogging(google::GLOG_INFO);
-    google::SetLogDestination(google::GLOG_INFO,log_INFO_dir.c_str());
-    google::SetLogDestination(google::GLOG_ERROR,log_ERROR_dir.c_str());
-    google::SetLogDestination(google::GLOG_WARNING,log_WARNNG_dir.c_str());
-    google::SetLogDestination(google::GLOG_FATAL,log_FATAL_dir.c_str());
-
+    FLAGS_logtostderr=true;
 
 
 
@@ -197,6 +184,7 @@ void AppMange::registerQmlTypes()
 void AppMange::initializeQmlInterface()
 {// Initialize modules
     auto miscThemeManager = &Misc::ThemeManager::instance();
+    auto testSerial=&serial::Get_Instance();
     // Operating system flags
     bool isWin = false;
     bool isMac = false;
