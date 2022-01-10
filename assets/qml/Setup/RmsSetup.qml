@@ -143,6 +143,9 @@ Control {
                      for(var i=0;i<30000;i++){feedxy(i,i)}
                      }
                      }
+
+                     Label{text:"serialtest"}
+                     Button{text: "open";onClicked:cpp_SerialPort.serial_open()}
                      //
                      // Spacer
                      //

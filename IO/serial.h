@@ -9,23 +9,34 @@
 #include"../template/singleton.h"
 #include<QThread>
 #include<QDebug>
-class serial :public QObject,public  SingleTon<serial>
-{
+#include<QThread>
+class serial :public QSerialPort{
     Q_OBJECT
 public:
-    serial(const serial&)=delete;
-    serial& operate(const serial&)=delete;
-    ~serial(){
-        qserial_.close();
-    }
-    serial(token tk);
-private:
-    QThread td;
-    QSerialPort qserial_;
-public Q_SLOTS:
-    void DataReady();
-       Q_SIGNALS:
-    void dataChanged(QByteArray bytes);
-};
+     std::atomic<bool> atomic_read=true;
+    ~serial();
+    serial();
 
+
+private:
+
+public Q_SLOTS:
+ void Get_data();
+
+};
+class serialtest:public QObject,public  SingleTon<serialtest>
+
+{Q_OBJECT
+public:
+    serialtest(const serialtest&)=delete;
+    serialtest& operator=(const serialtest&)=delete;
+
+    serialtest(token tk);
+    ~serialtest();
+ Q_SIGNALS:
+    void serial_open();
+private:
+    serial serial;
+    QThread td;
+};
 #endif // SERIAL_H

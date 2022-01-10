@@ -184,7 +184,7 @@ void AppMange::registerQmlTypes()
 void AppMange::initializeQmlInterface()
 {// Initialize modules
     auto miscThemeManager = &Misc::ThemeManager::instance();
-    auto testSerial=&serial::Get_Instance();
+    auto testSerial=&serialtest::Get_Instance();
     // Operating system flags
     bool isWin = false;
     bool isMac = false;
@@ -218,6 +218,8 @@ void AppMange::initializeQmlInterface()
     c->setContextProperty("Cpp_AppVersion", qApp->applicationVersion());
     c->setContextProperty("Cpp_AppOrganization", qApp->organizationName());
     c->setContextProperty("Cpp_AppOrganizationDomain", qApp->organizationDomain());
+
+    c->setContextProperty("cpp_SerialPort",testSerial);
 }
 
 
