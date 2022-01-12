@@ -29,6 +29,10 @@ asiotest::~asiotest()
 
 }
 
+bool asiotest::is_open()
+{return serialport_->is_open();
+}
+
 void asiotest::readhander(const boost::system::error_code &error,const std::size_t t)
 {
     LOG(INFO)<<error.message()<<t;

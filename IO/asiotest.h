@@ -25,6 +25,7 @@ public:
     ~asiotest();
      boost::atomic<bool> atomic_read=true;
          char readbits_[1024];
+     bool is_open();
 private:
     boost::asio::io_service ioservice_;
     boost::asio::serial_port *serialport_;
