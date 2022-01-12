@@ -1,7 +1,8 @@
 ﻿#include "appmange.h"
 #include"../IO/serial.h"
-
-
+#include"../IO/asiotest.h"
+#include"boost/thread/detail/singleton.hpp"
+using namespace boost::detail::thread;
 AppMange::AppMange(int argc, char *argv[])
 
 
@@ -185,7 +186,12 @@ void AppMange::initializeQmlInterface()
 {// Initialize modules
     auto miscThemeManager = &Misc::ThemeManager::instance();
     auto testSerial=&serialtest::Get_Instance();
-    // Operating system flags
+   // static asiotest *testasio= &boost::detail::thread::singleton<asiotest>::instance();
+   // testasio->get_data();
+   // testasio->asyncgetdata();
+
+
+   // Operating system flags
     bool isWin = false;
     bool isMac = false;
     bool isNix = false;
@@ -220,6 +226,7 @@ void AppMange::initializeQmlInterface()
     c->setContextProperty("Cpp_AppOrganizationDomain", qApp->organizationDomain());
 
     c->setContextProperty("cpp_SerialPort",testSerial);
+
 }
 
 

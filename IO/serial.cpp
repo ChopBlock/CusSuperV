@@ -31,7 +31,9 @@ serial::~serial()
 }
 
 void serial::Get_data()
-{    while(atomic_read){
+{
+
+    while(atomic_read){
 
         if(!isOpen()){
             open(QSerialPort::ReadWrite);

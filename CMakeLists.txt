@@ -6,6 +6,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_STANDARD 17)
+
 find_package(Qt6 6.2 COMPONENTS
     Quick
     GUi
@@ -22,20 +23,27 @@ find_package(Qt6 6.2 COMPONENTS
     REQUIRED)
 find_package(glog CONFIG REQUIRED)
 find_package(unofficial-breakpad CONFIG REQUIRED)
-find_package(folly CONFIG REQUIRED)
+find_package(folly  CONFIG REQUIRED)
 find_package(Eigen3 CONFIG REQUIRED)
-find_package(Boost  REQUIRED)
+find_package(Boost         REQUIRED)
+#find_package(Gtest  CONFIG REQUIRED)
 #-----project----
 
-file(GLOB
-     head
-     guarantee/*h
-     template/*h
-     rms_api/*h
-     rms_api/filter/savitzky_golay/*h
-     IO/*h
+#file(GLOB
+#     head
+#     guarantee/*h
+#     template/*h
+#     rms_api/*h
+#     rms_api/filter/savitzky_golay/*h
+#     IO/*h
+#    )
+include_directories(
+     guarantee/
+     template/
+     rms_api/
+     rms_api/filter/savitzky_golay/
+     IO/
     )
-
 file(GLOB
     src
     guarantee/*cpp
@@ -97,8 +105,11 @@ qt_add_executable(appCusSuperV
 
 target_compile_definitions(appCusSuperV
     PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
-target_link_libraries(appCusSuperV
-    PRIVATE
+
+
+set(project_libs
+
+
     Qt6::Quick
     Qt6::Gui
     Qt6::Qml
@@ -120,3 +131,15 @@ target_link_libraries(appCusSuperV
     Boost::boost
 
     )
+
+target_link_libraries(appCusSuperV
+    PRIVATE
+    ${project_libs}
+
+
+#    GTest::gmock
+#    GTest::gtest
+#    GTest::gmock_main
+#    GTest::gtest_main
+    )# 添加测试目录
+add_subdirectory(test)
